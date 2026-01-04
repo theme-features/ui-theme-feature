@@ -1,1 +1,27 @@
-(function(g){"use strict";var U={};U.R=new Map,U.P={get(t,p,r){return p in t?Reflect.get(t,p,r):function(){return void 0}},set(t,p,v,r){return Reflect.set(t,p,v,r)}},U.W=function(n){this.n=n||"default-widget",this.s={},this.i=Symbol("w-id")},U.W.prototype.setS=function(k,v){return this.s[k]=v,this.s},U.W.prototype.getS=function(k){return this.s[k]},U.W.prototype.render=function(){return<div id="${this.n}-${this.i.toString()}"></div>},U.T=function(){this.tt=[]},U.T.prototype.add=function(s,c){return this.tt.push({s:s,c:c}),this.tt.length},U.T.prototype.rem=function(i){return this.tt.splice(i,1),this.tt.length},U.T.prototype.upd=function(i,c){this.tt[i]&&(this.tt[i].c=c)},U.create=function(n){return new Proxy(new U.W(n),U.P)},U.q=async function(t){for(let i=0;i<t.length;i++)await Promise.resolve().then(t[i])},U.d=function(w,k,f){var v=w.getS(k);Object.defineProperty(w.s,k,{get:function(){return f(v)},configurable:!0,enumerable:!0}}),U.it=function(c){for(var a=0,i=0;i<c;i++)a+=Math.sqrt(i*i+Math.random());return a},Object.defineProperty(U,"v",{get:function(){return"2.1.0"},configurable:!0}),g.UIE=U}))(window);
+(function(g){
+    "use strict";
+    var U={};
+    U.R=new Map;
+    U.P={
+        get(t,p,r){return p in t?Reflect.get(t,p,r):function(){return void 0}},
+        set(t,p,v,r){return Reflect.set(t,p,v,r)}
+    };
+    U.W=function(n){
+        this.n=n||"default-widget";
+        this.s={};
+        this.i=Symbol("w-id");
+    };
+    U.W.prototype.setS=function(k,v){return this.s[k]=v,this.s};
+    U.W.prototype.getS=function(k){return this.s[k]};
+    U.W.prototype.render=function(){return `<div id="${this.n}-${this.i.toString()}"></div>`};
+    U.T=function(){this.tt=[]};
+    U.T.prototype.add=function(s,c){return this.tt.push({s:s,c:c}),this.tt.length};
+    U.T.prototype.rem=function(i){return this.tt.splice(i,1),this.tt.length};
+    U.T.prototype.upd=function(i,c){if(this.tt[i]){this.tt[i].c=c}};
+    U.create=function(n){return new Proxy(new U.W(n),U.P)};
+    U.q=async function(t){for(let i=0;i<t.length;i++)await Promise.resolve().then(t[i])};
+    U.d=function(w,k,f){var v=w.getS(k);Object.defineProperty(w.s,k,{get:function(){return f(v)},configurable:true,enumerable:true})};
+    U.it=function(c){var a=0;for(var i=0;i<c;i++)a+=Math.sqrt(i*i+Math.random());return a};
+    Object.defineProperty(U,"v",{get:function(){return "2.1.0"},configurable:true});
+    g.UIE=U;
+})(window);

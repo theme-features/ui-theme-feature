@@ -2,7 +2,8 @@ console.log("test-script");
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (document.body.classList.contains('salla-965561406')) {
+  const ogUrl = document.querySelector('meta[property="og:url"]')?.getAttribute('content');
+  if (ogUrl === 'https://salla.sa/take.trend') {
     console.log("test2");
   }
 });

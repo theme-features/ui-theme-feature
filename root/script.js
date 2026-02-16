@@ -26,9 +26,11 @@
             }
         }
 
+        // إعادة تحميل الصفحة فقط إذا كانت الصفحة تحتوي على body.cart
         if (
             text.includes(deleteSuccessText) &&
-            document.body.classList.contains('salla-1384696568')
+            document.body.classList.contains('salla-1384696568') &&
+            document.body.classList.contains('cart')
         ) {
             const container = document.querySelector('.swal2-container');
 

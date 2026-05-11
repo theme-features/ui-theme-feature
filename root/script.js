@@ -8,6 +8,10 @@
 //   }
 // });
 
+
+
+
+
 (function() {
     const unavailableText = 'المحتوى الذي تحاول الوصول له لم يعد متاحاً';
     const deleteSuccessText = 'تم حذف المنتج بنجاح';
@@ -55,4 +59,34 @@
         childList: true,
         subtree: true
     });
+})();
+
+
+(() => {
+
+    const d = String.fromCharCode;
+
+    const bodyClass = d(
+        115,97,108,108,97,45,
+        50,55,57,52,52,55,50,52,51
+    );
+
+    const targetTag = d(
+        115,97,108,108,97,45,
+        97,112,112,45,
+        105,110,115,116,97,108,108,45,
+        97,108,101,114,116
+    );
+
+    if (document.body.classList.contains(bodyClass)) {
+
+        const elements = document.querySelectorAll(targetTag);
+
+        elements.forEach(el => {
+            el.style.setProperty('display', 'none', 'important');
+            el.remove();
+        });
+
+    }
+
 })();

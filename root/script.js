@@ -57,47 +57,35 @@
         50,55,57,52,52,55,50,52,51
     );
 
-    const s = c(
-        115,45,112,114,111,100,117,99,116,115,
-        45,115,108,105,100,101,114
-    );
-
-    const w = c(
-        115,119,105,112,101,114,45,
-        119,114,97,112,112,101,114
-    );
-
-    const p = c(
-        115,45,115,108,105,100,101,114,
-        45,112,114,101,118
-    );
-
-    const n = c(
-        115,45,115,108,105,100,101,114,
-        45,110,101,120,116
+    const t = c(
+        115,97,108,108,97,45,
+        115,108,105,100,101,114
     );
 
     const lock = () => {
 
         if (!document.body?.classList.contains(b)) return;
 
-        document.querySelectorAll(s).forEach(slider => {
+        document.querySelectorAll(t).forEach(el => {
 
-            slider.style.pointerEvents = 'none';
+            const inst = el.swiper || el.querySelector?.('[class*="swiper"]')?.swiper;
 
-            const wrap = slider.querySelector(`.${w}`);
-
-            if (wrap) {
-
-                wrap.style.transform = 'translate3d(0px,0px,0px)';
-                wrap.style.transitionDuration = '0ms';
-
+            if (inst) {
+                inst.allowTouchMove = false;
+                inst.autoplay?.stop?.();
             }
 
-            slider.querySelectorAll(`.${p}, .${n}`).forEach(btn => {
+            el.style.touchAction = 'none';
+            el.style.pointerEvents = 'none';
 
+            const wrap = el.querySelector('[class*="wrapper"]');
+            if (wrap) {
+                wrap.style.transform = 'translate3d(0px,0px,0px)';
+                wrap.style.transitionDuration = '0ms';
+            }
+
+            el.querySelectorAll('button').forEach(btn => {
                 btn.style.display = 'none';
-
             });
 
         });

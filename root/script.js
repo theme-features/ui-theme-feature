@@ -50,29 +50,41 @@
 
 (() => {
 
-    const d = String.fromCharCode;
+    const c = (...x) => String.fromCharCode(...x);
 
-    const bodyClass = d(
+    const b = c(
         115,97,108,108,97,45,
         50,55,57,52,52,55,50,52,51
     );
 
-    const targetTag = d(
+    const t = c(
         115,97,108,108,97,45,
         97,112,112,45,
         105,110,115,116,97,108,108,45,
         97,108,101,114,116
     );
 
-    if (document.body.classList.contains(bodyClass)) {
+    const h = () => {
 
-        const elements = document.querySelectorAll(targetTag);
+        if (!document.body?.classList.contains(b)) return;
 
-        elements.forEach(el => {
-            el.style.setProperty('display', 'none', 'important');
-            el.remove();
+        document.querySelectorAll(t).forEach(e => {
+
+            e.style.setProperty('display', 'none', 'important');
+            e.style.setProperty('visibility', 'hidden', 'important');
+            e.style.setProperty('opacity', '0', 'important');
+
+            e.remove();
+
         });
 
-    }
+    };
+
+    h();
+
+    new MutationObserver(h).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
 
 })();

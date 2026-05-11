@@ -57,32 +57,56 @@
         50,55,57,52,52,55,50,52,51
     );
 
-    const t = c(
-        115,97,108,108,97,45,
-        97,112,112,45,
-        105,110,115,116,97,108,108,45,
-        97,108,101,114,116
+    const s = c(
+        115,45,112,114,111,100,117,99,116,115,
+        45,115,108,105,100,101,114
     );
 
-    const h = () => {
+    const w = c(
+        115,119,105,112,101,114,45,
+        119,114,97,112,112,101,114
+    );
+
+    const p = c(
+        115,45,115,108,105,100,101,114,
+        45,112,114,101,118
+    );
+
+    const n = c(
+        115,45,115,108,105,100,101,114,
+        45,110,101,120,116
+    );
+
+    const lock = () => {
 
         if (!document.body?.classList.contains(b)) return;
 
-        document.querySelectorAll(t).forEach(e => {
+        document.querySelectorAll(s).forEach(slider => {
 
-            e.style.setProperty('display', 'none', 'important');
-            e.style.setProperty('visibility', 'hidden', 'important');
-            e.style.setProperty('opacity', '0', 'important');
+            slider.style.pointerEvents = 'none';
 
-            e.remove();
+            const wrap = slider.querySelector(`.${w}`);
+
+            if (wrap) {
+
+                wrap.style.transform = 'translate3d(0px,0px,0px)';
+                wrap.style.transitionDuration = '0ms';
+
+            }
+
+            slider.querySelectorAll(`.${p}, .${n}`).forEach(btn => {
+
+                btn.style.display = 'none';
+
+            });
 
         });
 
     };
 
-    h();
+    lock();
 
-    new MutationObserver(h).observe(document.documentElement, {
+    new MutationObserver(lock).observe(document.documentElement, {
         childList: true,
         subtree: true
     });

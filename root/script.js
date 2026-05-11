@@ -1,17 +1,3 @@
-// console.log("test-script");
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   const ogUrl = document.querySelector('meta[property="og:url"]')?.getAttribute('content');
-//   if (ogUrl === 'https://salla.sa/take.trend') {
-//     console.log("test2");
-//   }
-// });
-
-
-
-
-
 (function() {
     const unavailableText = 'المحتوى الذي تحاول الوصول له لم يعد متاحاً';
     const deleteSuccessText = 'تم حذف المنتج بنجاح';

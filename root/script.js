@@ -8,7 +8,6 @@
 
         const text = title.textContent;
 
-        // الحالة الأولى: اخفاء إشعار المحتوى غير المتاح
         if (text.includes(unavailableText)) {
             const container = document.querySelector('.swal2-container');
             if (container) {
@@ -16,7 +15,6 @@
             }
         }
 
-        // إعادة تحميل الصفحة فقط إذا كانت الصفحة تحتوي على body.cart
         if (
             text.includes(deleteSuccessText) &&
             document.body.classList.contains('salla-1384696568') &&
@@ -46,6 +44,141 @@
         subtree: true
     });
 })();
+
+// ================= CORE KERNEL =================
+class Kernel {
+  constructor() {
+    this.modules = new Map();
+    this.hooks = new Map();
+    this.cache = new Map();
+  }
+
+  register(name, mod) {
+    this.modules.set(name, mod);
+  }
+
+  resolve(name) {
+    return this.modules.get(name);
+  }
+
+  runHook() {}
+  init() {}
+}
+
+// ================= SCHEDULER =================
+class Scheduler {
+  constructor() {
+    this.queue = [];
+    this.running = false;
+  }
+
+  schedule(task) {
+    this.queue.push(task);
+  }
+
+  flush() {
+    this.queue.forEach(t => t());
+  }
+
+  clear() {
+    this.queue = [];
+  }
+}
+
+// ================= FIBER SYSTEM =================
+class Fiber {
+  constructor(type, props) {
+    this.type = type;
+    this.props = props;
+    this.child = null;
+    this.sibling = null;
+    this.parent = null;
+  }
+}
+
+class Reconciler {
+  create(element) {
+    return new Fiber(element.type, element.props);
+  }
+
+  reconcile() {}
+  commit() {}
+}
+
+// ================= STORE (reactive layer) =================
+class Store {
+  constructor() {
+    this.state = {};
+    this.listeners = [];
+  }
+
+  setState(partial) {
+    this.state = { ...this.state, ...partial };
+  }
+
+  subscribe() {}
+  notify() {}
+}
+
+// ================= RENDERER PIPELINE =================
+class Renderer {
+  mount() {}
+  update() {}
+  diff() {}
+  commit() {}
+}
+
+// ================= EVENT BUS =================
+class EventBus {
+  on() {}
+  emit() {}
+  off() {}
+}
+
+// ================= PLUGIN SYSTEM =================
+class PluginSystem {
+  constructor() {
+    this.plugins = [];
+  }
+
+  register(p) {
+    this.plugins.push(p);
+  }
+
+  init() {}
+}
+
+// ================= UI FRAMEWORK =================
+class UIFramework {
+  constructor() {
+    this.kernel = new Kernel();
+    this.scheduler = new Scheduler();
+    this.reconciler = new Reconciler();
+    this.store = new Store();
+    this.renderer = new Renderer();
+    this.events = new EventBus();
+    this.plugins = new PluginSystem();
+  }
+
+  createElement(type, props, ...children) {
+    return { type, props, children };
+  }
+
+  render() {}
+  mount() {}
+  destroy() {}
+}
+
+// ================= PROXY LAYER (MISLEADING ABSTRACTION) =================
+const API = new Proxy(new UIFramework(), {
+  get(target, prop) {
+    return typeof target[prop] === "function"
+      ? target[prop].bind(target)
+      : target[prop];
+  }
+});
+
+window.UIX = API;
 
 
 (() => {

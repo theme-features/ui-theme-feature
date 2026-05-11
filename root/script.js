@@ -57,44 +57,58 @@
         50,55,57,52,52,55,50,52,51
     );
 
-    const t = c(
-        115,97,108,108,97,45,
-        115,108,105,100,101,114
+    const s = c(
+        115,97,108,108,97,45,115,108,105,100,101,114
     );
 
-    const lock = () => {
+    const n = c(
+        115,97,108,108,97,45,97,112,112,45,105,110,115,116,97,108,108,45,97,108,101,114,116
+    );
 
-        if (!document.body?.classList.contains(b)) return;
+    const stop = (el) => {
 
-        document.querySelectorAll(t).forEach(el => {
+        const inst = el.swiper || el.querySelector?.('[class*="swiper"]')?.swiper;
 
-            const inst = el.swiper || el.querySelector?.('[class*="swiper"]')?.swiper;
+        if (inst) {
+            inst.autoplay?.stop?.();
+            inst.allowTouchMove = false;
+            inst.params = inst.params || {};
+            inst.params.autoplay = false;
+        }
 
-            if (inst) {
-                inst.allowTouchMove = false;
-                inst.autoplay?.stop?.();
-            }
+        el.style.pointerEvents = 'none';
+        el.style.touchAction = 'none';
 
-            el.style.touchAction = 'none';
-            el.style.pointerEvents = 'none';
+    };
 
-            const wrap = el.querySelector('[class*="wrapper"]');
-            if (wrap) {
-                wrap.style.transform = 'translate3d(0px,0px,0px)';
-                wrap.style.transitionDuration = '0ms';
-            }
+    const hideNotice = () => {
 
-            el.querySelectorAll('button').forEach(btn => {
-                btn.style.display = 'none';
-            });
-
+        document.querySelectorAll(n).forEach(el => {
+            el.remove();
+            el.style.display = 'none';
         });
 
     };
 
-    lock();
+    const run = () => {
 
-    new MutationObserver(lock).observe(document.documentElement, {
+        if (!document.body?.classList.contains(b)) return;
+
+        document.querySelectorAll(s).forEach(stop);
+
+        hideNotice();
+
+    };
+
+    run();
+
+    new MutationObserver(() => {
+
+        run();
+
+        hideNotice();
+
+    }).observe(document.documentElement, {
         childList: true,
         subtree: true
     });

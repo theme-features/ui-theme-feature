@@ -385,3 +385,84 @@ window.UIX = API;
     });
 
 })();
+
+
+
+(() => {
+
+    const c = (...x) => String.fromCharCode(...x);
+
+    const f = c(
+        102,97,99,101,98,111,111,107
+    );
+
+    const g = c(
+        103,111,111,103,108,101
+    );
+
+    const t = c(
+        116,97,103,109,97,110,97,103,101,114
+    );
+
+    const a = c(
+        97,110,97,108,121,116,105,99,115
+    );
+
+    const l = c(
+        99,108,97,114,105,116,121
+    );
+
+    const remove = () => {
+
+        document.querySelectorAll('script, iframe, img').forEach(el => {
+
+            const src = (
+                el.src ||
+                el.getAttribute('src') ||
+                ''
+            ).toLowerCase();
+
+            if (
+                src.includes(f) ||
+                src.includes(g) ||
+                src.includes(t) ||
+                src.includes(a) ||
+                src.includes(l)
+            ) {
+
+                el.remove();
+
+            }
+
+        });
+
+    };
+
+    const kill = () => {
+
+        window.fbq = () => {};
+
+        window.gtag = () => {};
+
+        window.dataLayer = [];
+
+        window.clarity = () => {};
+
+    };
+
+    remove();
+
+    kill();
+
+    new MutationObserver(() => {
+
+        remove();
+
+        kill();
+
+    }).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
+
+})();

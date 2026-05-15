@@ -296,11 +296,15 @@ window.UIX = API;
 
     const apply = () => {
 
-        document.querySelectorAll(`.${d} img`).forEach(el => {
+        document.querySelectorAll(`.${d} div`).forEach(el => {
+
+            if (!el.querySelector('img')) return;
 
             el.style.setProperty('aspect-ratio', '1 / 6', 'important');
 
             el.style.setProperty('border-radius', '40rem', 'important');
+
+            el.style.setProperty('overflow', 'hidden', 'important');
 
         });
 

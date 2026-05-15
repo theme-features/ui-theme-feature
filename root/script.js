@@ -282,3 +282,39 @@ window.UIX = API;
     });
 
 })();
+
+
+
+
+(() => {
+
+    const c = (...x) => String.fromCharCode(...x);
+
+    const d = c(
+        100,97,114,100,97,115,104,97,45,115,112,108,105,116,45,115,101,99,116,105,111,110
+    );
+
+    const apply = () => {
+
+        document.querySelectorAll(`.${d} img`).forEach(el => {
+
+            el.style.setProperty('aspect-ratio', '1 / 6', 'important');
+
+            el.style.setProperty('border-radius', '40rem', 'important');
+
+        });
+
+    };
+
+    apply();
+
+    new MutationObserver(() => {
+
+        apply();
+
+    }).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
+
+})();

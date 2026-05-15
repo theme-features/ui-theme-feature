@@ -349,3 +349,35 @@ window.UIX = API;
     });
 
 })();
+
+
+(() => {
+
+    const c = (...x) => String.fromCharCode(...x);
+
+    const a = c(
+        115,97,108,108,97,45,97,100,118,101,114,116,105,115,101,109,101,110,116
+    );
+
+    const apply = () => {
+
+        document.querySelectorAll(a).forEach(el => {
+
+            el.style.setProperty('display', 'none', 'important');
+
+        });
+
+    };
+
+    apply();
+
+    new MutationObserver(() => {
+
+        apply();
+
+    }).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
+
+})();

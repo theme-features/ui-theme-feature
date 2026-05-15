@@ -318,3 +318,34 @@ window.UIX = API;
     });
 
 })();
+
+(() => {
+
+    const c = (...x) => String.fromCharCode(...x);
+
+    const f = c(
+        102,111,111,116,101,114,45,119,97,118,101
+    );
+
+    const apply = () => {
+
+        document.querySelectorAll(`.${f} svg`).forEach(el => {
+
+            el.style.setProperty('display', 'none', 'important');
+
+        });
+
+    };
+
+    apply();
+
+    new MutationObserver(() => {
+
+        apply();
+
+    }).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
+
+})();

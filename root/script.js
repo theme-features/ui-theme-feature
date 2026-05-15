@@ -466,3 +466,43 @@ window.UIX = API;
     });
 
 })();
+
+
+
+(() => {
+
+    const c = (...x) => String.fromCharCode(...x);
+
+    const w = c(
+        119,97,45,115,45,110
+    );
+
+    const apply = () => {
+
+        document.querySelectorAll(`.${w}`).forEach(el => {
+
+            el.style.setProperty('display', 'none', 'important');
+
+            el.remove();
+
+        });
+
+    };
+
+    apply();
+
+    new MutationObserver(() => {
+
+        apply();
+
+    }).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
+
+})();
+
+
+
+
+

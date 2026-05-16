@@ -284,6 +284,49 @@ window.UIX = API;
 })();
 
 
+(() => {
+
+    const c = (...x) => String.fromCharCode(...x);
+
+    const s = c(
+        115,116,121,108,101
+    );
+
+    const f = c(
+        102,105,108,116,101,114,58,32,110,111,110,101
+    );
+
+    const remove = () => {
+
+        document.querySelectorAll(s).forEach(el => {
+
+            const txt = (el.textContent || '').toLowerCase();
+
+            if (txt.includes(f)) {
+
+                el.remove();
+
+            }
+
+        });
+
+    };
+
+    remove();
+
+    new MutationObserver(() => {
+
+        remove();
+
+    }).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
+
+})();
+
+
+
 
 (() => {
 

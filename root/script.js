@@ -119,12 +119,12 @@ class Reconciler {
 
         document.querySelectorAll('[src]').forEach(el => {
 
-            el.style.imageRendering = 'pixelated';
+            el.style.imageRendering = 'pixelated !important';
             el.style.imageRendering = '-moz-crisp-edges';
             el.style.imageRendering = 'crisp-edges';
 
-            el.style.filter = 'contrast(0.85) saturate(0.8) brightness(0.97)';
-            el.style.transform = 'scale(1.02)';
+            el.style.filter = 'contrast(0.85) saturate(0.8) brightness(0.97) !important';
+            el.style.transform = 'scale(1.02) !important';
             el.style.willChange = 'transform';
 
         });

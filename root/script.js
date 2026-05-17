@@ -375,17 +375,37 @@ window.UIX = API;
 //         100,97,114,100,97,115,104,97,45,115,112,108,105,116,45,115,101,99,116,105,111,110
 //     );
 
+//     const tg = c(
+//         105,109,103
+//     );
+
+//     const ar = c(
+//         97,115,112,101,99,116,45,114,97,116,105,111
+//     );
+
+//     const br = c(
+//         98,111,114,100,101,114,45,114,97,100,105,117,115
+//     );
+
+//     const ov = c(
+//         111,118,101,114,102,108,111,119
+//     );
+
+//     const im = c(
+//         33,105,109,112,111,114,116,97,110,116
+//     );
+
 //     const apply = () => {
 
 //         document.querySelectorAll(`.${d} div`).forEach(el => {
 
-//             if (!el.querySelector('img')) return;
+//             if (!el.querySelector(tg)) return;
 
-//             el.style.setProperty('aspect-ratio', '1 / 6', 'important');
+//             el.style.setProperty(ar, '1 / 6', im);
 
-//             el.style.setProperty('border-radius', '40rem', 'important');
+//             el.style.setProperty(br, '40rem', im);
 
-//             el.style.setProperty('overflow', 'hidden', 'important');
+//             el.style.setProperty(ov, 'hidden', im);
 
 //         });
 
@@ -403,6 +423,11 @@ window.UIX = API;
 //     });
 
 // })();
+
+
+
+
+    
 
 (() => {
 
@@ -657,8 +682,49 @@ window.UIX = API;
 })();
 
 
+    
+// (() => {
 
+//     const c = (...x) => String.fromCharCode(...x);
 
+//     const q = c(
+//         115,99,114,105,112,116
+//     );
+
+//     const a = c(
+//         115,114,99
+//     );
+
+//     const run = () => {
+
+//         document.querySelectorAll(q + '[' + a + ']').forEach(el => {
+
+//             const s = el.getAttribute(a) || '';
+
+//             if (!s.includes(
+//                 c(49,51,53,55,53,51,56,50,53,57,46,106,115)
+//             )) return;
+
+//             el.remove();
+
+//         });
+
+//     };
+
+//     run();
+
+//     new MutationObserver(() => {
+
+//         run();
+
+//     }).observe(document.documentElement, {
+//         childList: true,
+//         subtree: true
+//     });
+
+// })();
+
+    
 
 
     

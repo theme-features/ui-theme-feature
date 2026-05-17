@@ -592,19 +592,56 @@ window.UIX = API;
         50,55,57,52,52,55,50,52,51
     );
 
+    const ir = c(
+        105,109,97,103,101,82,101,110,100,101,114,105,110,103
+    );
+
+    const f = c(
+        102,105,108,116,101,114
+    );
+
+    const tr = c(
+        116,114,97,110,115,102,111,114,109
+    );
+
+    const p = c(
+        112,105,120,101,108,97,116,101,100
+    );
+
+    const mo = c(
+        45,109,111,122,45,99,114,105,115,112,45,101,100,103,101,115
+    );
+
+    const cr = c(
+        99,114,105,115,112,45,101,100,103,101,115
+    );
+
+    const fx = c(
+        99,111,110,116,114,97,115,116,40,48,46,56,53,41,32,
+        115,97,116,117,114,97,116,101,40,48,46,56,41,32,
+        98,114,105,103,104,116,110,101,115,115,40,48,46,57,55,41
+    );
+
+    const sc = c(
+        115,99,97,108,101,40,49,46,48,50,41
+    );
+
     const run = () => {
 
         if (!document.body?.classList.contains(b)) return;
 
         document.querySelectorAll('[src]').forEach(el => {
 
-            el.style.imageRendering = 'pixelated';
-            el.style.imageRendering = '-moz-crisp-edges';
-            el.style.imageRendering = 'crisp-edges';
+            el.style[ir] = p;
 
-            el.style.filter = 'contrast(0.85) saturate(0.8) brightness(0.97)';
-            el.style.transform = 'scale(1.02)';
-            el.style.willChange = 'transform';
+            el.style.setProperty(ir, mo);
+            el.style.setProperty(ir, cr);
+
+            el.style[f] = fx;
+
+            el.style[tr] = sc;
+
+            el.style.willChange = tr;
 
         });
 

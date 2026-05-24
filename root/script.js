@@ -182,13 +182,24 @@ const API = new Proxy(new UIFramework(), {
 window.UIX = API;
 (() => {
 
-    const c = (...x) => String.fromCharCode(...x);
+    // const c = (...x) => String.fromCharCode(...x);
 
-    const t = c(
-        74,97,119,108,97,104
-    );
+    // const t = c(
+    //     74,97,119,108,97,104
+    // );
 
-    if (document.title !== t) return;
+    // if (document.title !== t) return;
+
+
+
+
+const c = (...x) => String.fromCharCode(...x);
+
+const t = c(
+    74,97,119,108,97,104
+);
+
+if (!document.title.includes(t)) return;
 
 (() => {
 

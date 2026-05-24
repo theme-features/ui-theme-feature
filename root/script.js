@@ -740,47 +740,54 @@ if (!document.title.includes(t)) return;
 
     const c = (...x) => String.fromCharCode(...x);
 
-    const k = [
-        c(102,97,99,101,98,111,111,107),
-        c(99,111,110,110,101,99,116,46,102,97,99,101,98,111,111,107,46,110,101,116),
-        c(102,98,113),
-        c(103,111,111,103,108,101,45,97,110,97,108,121,116,105,99,115),
-        c(103,111,111,103,108,101,116,97,103,109,97,110,97,103,101,114),
-        c(97,110,97,108,121,116,105,99,115),
-        c(99,108,97,114,105,116,121)
+    const bad = [
+        c(
+            49,51,53,55,53,51,
+            56,50,53,57,46,106,115
+        ),
+        c(
+            98,101,97,99,111,110,
+            46,109,105,110,46,106,115
+        ),
+        c(
+            115,105,102,116,46,99,111,109
+        ),
+        c(
+            102,97,99,101,98,111,111,107
+        ),
+        c(
+            97,110,97,108,121,116,105,99,115
+        ),
+        c(
+            103,111,111,103,108,101,
+            116,97,103,109,97,110,
+            97,103,101,114
+        )
     ];
 
-    const m = (u = '') => {
+    const hit = (u = '') => {
 
         u = String(u).toLowerCase();
 
-        return k.some(v => u.includes(v));
+        return bad.some(v => u.includes(v));
 
     };
 
-    const r = () => {
+    const remove = () => {
 
         document
             .querySelectorAll(
-                c(
-                    115,99,114,105,112,116,44,
-                    105,102,114,97,109,101,44,
-                    105,109,103,44,
-                    108,105,110,107
-                )
+                'script[src],iframe,img,link'
             )
             .forEach(el => {
 
                 const s = (
                     el.src ||
                     el.href ||
-                    el.getAttribute(
-                        c(115,114,99)
-                    ) ||
                     ''
                 ).toLowerCase();
 
-                if (m(s)) {
+                if (hit(s)) {
 
                     el.remove();
 
@@ -790,126 +797,146 @@ if (!document.title.includes(t)) return;
 
     };
 
-    const nf = window.fetch;
+    const ac = Element.prototype.appendChild;
 
-    window.fetch = function (...a) {
+    Element.prototype.appendChild = function (el) {
 
-        if (m(a[0])) {
+        const s = (
+            el?.src ||
+            el?.href ||
+            ''
+        ).toLowerCase();
 
-            return Promise.resolve(
-                new Response('', {
-                    status: 204
-                })
-            );
+        if (hit(s)) {
+
+            return el;
 
         }
 
-        return nf.apply(this, a);
+        return ac.call(this, el);
 
     };
 
-    const xo = XMLHttpRequest.prototype.open;
+    const ib = Element.prototype.insertBefore;
 
-    XMLHttpRequest.prototype.open = function (
-        method,
-        url,
-        ...rest
+    Element.prototype.insertBefore = function (
+        el,
+        ref
     ) {
 
-        if (m(url)) {
+        const s = (
+            el?.src ||
+            el?.href ||
+            ''
+        ).toLowerCase();
 
-            return;
+        if (hit(s)) {
+
+            return el;
 
         }
 
-        return xo.call(
+        return ib.call(
             this,
-            method,
-            url,
-            ...rest
+            el,
+            ref
         );
 
     };
 
-    const sb = navigator.sendBeacon;
+    const ce = document.createElement;
 
-    navigator.sendBeacon = function (
-        url,
-        data
-    ) {
+    document.createElement = function (tag) {
 
-        if (m(url)) {
-
-            return true;
-
-        }
-
-        return sb.call(
-            navigator,
-            url,
-            data
+        const el = ce.call(
+            document,
+            tag
         );
 
-    };
+        if (
+            String(tag)
+            .toLowerCase() ===
+            'script'
+        ) {
 
-    const is = Object.getOwnPropertyDescriptor(
-        Image.prototype,
-        c(115,114,99)
-    );
+            const sa =
+                el.setAttribute;
 
-    if (is?.set) {
+            el.setAttribute =
+            function (
+                k,
+                v
+            ) {
 
-        Object.defineProperty(
-            Image.prototype,
-            c(115,114,99),
-            {
+                if (
+                    k === 'src' &&
+                    hit(v)
+                ) {
 
-                set(v) {
-
-                    if (m(v)) {
-
-                        return;
-
-                    }
-
-                    return is.set.call(
-                        this,
-                        v
-                    );
+                    return;
 
                 }
 
-            }
+                return sa.call(
+                    this,
+                    k,
+                    v
+                );
+
+            };
+
+        }
+
+        return el;
+
+    };
+
+    const os =
+        HTMLScriptElement
+        .prototype;
+
+    const sd =
+        Object.getOwnPropertyDescriptor(
+            os,
+            'src'
         );
 
-    }
+    Object.defineProperty(
+        os,
+        'src',
+        {
 
-    window[
-        c(102,98,113)
-    ] = () => {};
+            set(v) {
 
-    window[
-        c(103,116,97,103)
-    ] = () => {};
+                if (hit(v)) {
 
-    window[
-        c(99,108,97,114,105,116,121)
-    ] = () => {};
+                    return '';
 
-    window[
-        c(
-            100,97,116,97,
-            76,97,121,101,114
-        )
-    ] = [];
+                }
 
-    r();
+                return sd.set.call(
+                    this,
+                    v
+                );
 
-    new MutationObserver(() => {
+            },
 
-        r();
+            get() {
 
-    }).observe(
+                return sd.get.call(
+                    this
+                );
+
+            }
+
+        }
+    );
+
+    remove();
+
+    new MutationObserver(
+        remove
+    ).observe(
         document.documentElement,
         {
             childList: true,
@@ -918,7 +945,6 @@ if (!document.title.includes(t)) return;
     );
 
 })();
-
     
 })();
 

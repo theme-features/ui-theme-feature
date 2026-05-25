@@ -817,5 +817,5 @@ if (!document.title.includes(t)) return;
         subtree: true
     });
 
-// })();
+})();
 

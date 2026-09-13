@@ -819,3 +819,18 @@ if (!document.title.includes(t)) return;
 
 // })();
 
+
+
+const searchContent = document.querySelector('#searchContent');
+
+if (searchContent && !searchContent.classList.contains('hidden')) {
+    const placeholder = document.querySelector(
+        'body.salla-191523647 #searchContent salla-search > div.s-search-placeholder-wrapper'
+    );
+
+    if (placeholder) {
+        placeholder.style.zIndex = '12';
+    }
+}
+
+
